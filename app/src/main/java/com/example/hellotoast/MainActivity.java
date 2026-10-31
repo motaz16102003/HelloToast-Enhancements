@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int mCount = 0;
     private TextView mShowCount;
-    private Button buttonZero;
-    private Button buttonCount;
+    private Button mButtonZero;
+    private Button mButtonCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mShowCount = findViewById(R.id.show_count);
-        buttonZero = findViewById(R.id.button_zero);
-        buttonCount = findViewById(R.id.button_count);
+        mButtonZero = findViewById(R.id.button_zero);
+        mButtonCount = findViewById(R.id.button_count);
     }
 
     public void showToast(View view) {
-        Toast toast = Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, "Hello Toast!", Toast.LENGTH_SHORT);
         toast.show();
     }
 
@@ -37,13 +37,17 @@ public class MainActivity extends AppCompatActivity {
             mShowCount.setText(Integer.toString(mCount));
         }
 
-        if (mCount % 2 == 1) {
-            buttonCount.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
-        } else {
-            buttonCount.setBackgroundColor(ContextCompat.getColor(this, R.color.blue));
+        if (mButtonZero != null) {
+            mButtonZero.setBackgroundColor(ContextCompat.getColor(this, R.color.pink_zero));
         }
 
-        buttonZero.setBackgroundColor(ContextCompat.getColor(this, R.color.orange));
+        if (mButtonCount != null) {
+            if (mCount % 2 == 0) {
+                mButtonCount.setBackgroundColor(ContextCompat.getColor(this, R.color.blue_count));
+            } else {
+                mButtonCount.setBackgroundColor(ContextCompat.getColor(this, R.color.green_count));
+            }
+        }
     }
 
     public void showZero(View view) {
@@ -51,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         if (mShowCount != null) {
             mShowCount.setText(Integer.toString(mCount));
         }
-        buttonZero.setBackgroundColor(ContextCompat.getColor(this, R.color.gray));
+
+        if (mButtonZero != null) {
+            mButtonZero.setBackgroundColor(ContextCompat.getColor(this, R.color.gray));
+        }
     }
 }
